@@ -1,0 +1,36 @@
+public void start(Stage primaryStage) throws Exception {
+        window = primaryStage;
+        window.setTitle("Login");
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,10));
+        grid.setVgap(8);
+        grid.setHgap(10);
+
+        //Name label
+        Label nameLbl = new Label("Username:");
+        GridPane.setConstraints(nameLbl, 0, 0);
+
+        //Name input
+        TextField nameTxtField = new TextField();
+        GridPane.setConstraints(nameTxtField, 1, 0);
+
+        //Password label
+        Label passLbl = new Label("Password:");
+        GridPane.setConstraints(passLbl, 0, 1);
+
+        //Password input
+        TextField passTxtField = new TextField();
+        GridPane.setConstraints(passTxtField, 1, 1);
+        passTxtField.setPromptText("Enter your password.");
+
+        //Login button
+        Button btnLogin = new Button("Login");
+        GridPane.setConstraints(btnLogin, 1, 2);
+
+        grid.getChildren().addAll(nameLbl,nameTxtField, passLbl,passTxtField, btnLogin);
+
+        Scene scene = new Scene(grid);
+        window.setScene(scene);
+        window.show();
+    }

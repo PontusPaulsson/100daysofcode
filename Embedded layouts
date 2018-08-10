@@ -1,0 +1,31 @@
+@Override
+    public void start(Stage primaryStage) throws Exception {
+        window = primaryStage;
+        window.setTitle("This is a title.");
+
+        HBox topMenu = new HBox();
+        Button btnA = new Button("File");
+        Button btnB = new Button("Edit");
+        Button btnC = new Button("View");
+
+        topMenu.getChildren().addAll(btnA, btnB, btnC);
+
+
+        VBox leftMenu = new VBox();
+        Button btnD = new Button("D");
+        Button btnE = new Button("E");
+        Button btnF = new Button("F");
+
+        leftMenu.getChildren().addAll(btnD, btnE, btnF);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+
+        StackPane layout = new StackPane();
+        Scene scene = new Scene(borderPane, 300, 300);
+        window.setScene(scene);
+        window.show();
+
+
+    }
