@@ -1,0 +1,22 @@
+@Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Title");
+        button = new Button("Click me!");
+
+        button.setOnAction(e -> System.out.println("Hej hej!")); //Lambda expression - Kan också kalla på flera metoder:
+
+        button.setOnAction(e -> {
+            System.out.println("Hej hej!"));
+            System.out.println("Hej hej!"));
+            }
+
+
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(button);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
