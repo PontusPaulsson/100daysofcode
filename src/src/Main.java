@@ -31,6 +31,7 @@ public class Main extends Application {
 
         //getItems returns the ObservableList object which can add items to
         choiceBox.getItems().addAll("Apples", "Bananas", "Oranges", "Watermelons");
+        choiceBox.setOnAction(e-> System.out.println(choiceBox.getValue()));
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20,20,20,20));
