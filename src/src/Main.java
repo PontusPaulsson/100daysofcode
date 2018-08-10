@@ -6,13 +6,13 @@ import javafx.stage.*;
 import javafx.event.*;
 import javafx.scene.control.*;
 
-public class Main extends Application  {
+public class Main extends Application {
 
     Stage window;
     Button btn1;
     Button btn2;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         launch(args);
     }
 
@@ -31,7 +31,7 @@ public class Main extends Application  {
         VBox layout1 = new VBox();
         layout1.getChildren().addAll(btn1, btn2);
 
-        Scene scene1 = new Scene(layout1, 300,300);
+        Scene scene1 = new Scene(layout1, 300, 300);
         window.setScene(scene1);
         window.show();
 
