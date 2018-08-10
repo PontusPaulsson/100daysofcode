@@ -12,7 +12,7 @@ public class Main extends Application {
     Stage window;
     Scene scene;
     String input;
-
+    ChoiceBox<String> choiceBox = new ChoiceBox<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -23,8 +23,11 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("Dropdowns");
         Button btn1 = new Button("Click me!");
+        btn1.setOnAction(e ->{
+            System.out.println(choiceBox.getValue());
+        });
 
-        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+
 
         //getItems returns the ObservableList object which can add items to
         choiceBox.getItems().addAll("Apples", "Bananas", "Oranges", "Watermelons");

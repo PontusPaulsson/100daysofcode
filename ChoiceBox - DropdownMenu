@@ -3,7 +3,10 @@
         window = primaryStage;
         window.setTitle("Dropdowns");
         Button btn1 = new Button("Click me!");
-
+        btnYes.setOnAction(e -> {
+            answer = true;
+            window.close();
+        });
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
 
         //getItems returns the ObservableList object which can add items to
