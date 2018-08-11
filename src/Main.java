@@ -1,3 +1,5 @@
+package src;
+
 import javafx.application.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,7 +12,6 @@ import javafx.scene.control.*;
 public class Main extends Application {
 
     Stage window;
-    Scene scene;
     String input;
     ChoiceBox<String> choiceBox = new ChoiceBox<>();
 
@@ -26,8 +27,6 @@ public class Main extends Application {
         btn1.setOnAction(e ->{
             System.out.println(choiceBox.getValue());
         });
-
-
 
         //getItems returns the ObservableList object which can add items to
         choiceBox.getItems().addAll("Apples", "Bananas", "Oranges", "Watermelons");

@@ -6,7 +6,7 @@ import javafx.stage.*;
 import javafx.event.*;
 import javafx.scene.control.*;
 
-public class Main extends Application  {
+public class src.Main extends Application  {
 
     Stage window;
     Scene scene1, scene2;

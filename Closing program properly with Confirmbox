@@ -21,7 +21,7 @@ public void start(Stage primaryStage) throws Exception {
     }
 
     private void closeProgram(){
-        Boolean answer = ConfirmBox.display("Title", "Sure you want to close the window.");
+        Boolean answer = src.ConfirmBox.display("Title", "Sure you want to close the window.");
         if(answer){
             System.out.println("File is saved.");
             window.close();
