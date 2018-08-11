@@ -1,35 +1,10 @@
-package src;
-
-import javafx.application.*;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.layout.*;
-import javafx.stage.*;
-import javafx.event.*;
-import javafx.scene.control.*;
-
-import java.util.Observable;
-
-public class Main extends Application {
-
-    Stage window;
-    String input;
-    ListView<String> listView = new ListView<>();
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+   public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Dropdowns");
         Button btn1 = new Button("Click me!");
 
         listView.getItems().addAll("Molly", "Astrid", "Majken");
-        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //Multiple selections enabled.
 
         btn1.setOnAction(e -> buttonClicked());
 
@@ -50,4 +25,3 @@ public class Main extends Application {
             System.out.println(m);
         }
     }
-}
