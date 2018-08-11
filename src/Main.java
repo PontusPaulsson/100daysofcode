@@ -13,7 +13,7 @@ public class Main extends Application {
 
     Stage window;
     String input;
-    ChoiceBox<String> choiceBox = new ChoiceBox<>();
+    ComboBox comboBox = new ComboBox();
 
     public static void main(String[] args) {
         launch(args);
@@ -24,20 +24,26 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("Dropdowns");
         Button btn1 = new Button("Click me!");
-        btn1.setOnAction(e ->{
-            System.out.println(choiceBox.getValue());
-        });
+
 
         //getItems returns the ObservableList object which can add items to
-        choiceBox.getItems().addAll("Apples", "Bananas", "Oranges", "Watermelons");
-        choiceBox.setOnAction(e-> System.out.println(choiceBox.getValue()));
+        comboBox.getItems().addAll("Apples", "Bananas", "Oranges", "Watermelons");
+        comboBox.setOnAction(e -> System.out.println("User selected: " + comboBox.getValue()));
+
+        comboBox.setPromptText("Select your favorite movie.");
+        comboBox.setEditable(true);
+
+        btn1.setOnAction(e -> printMovie());
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20,20,20,20));
-        layout.getChildren().addAll(btn1, choiceBox);
+        layout.getChildren().addAll(btn1, comboBox);
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.show();
+    }
+    private void printMovie(){
+        System.out.println(comboBox.getValue());
     }
 }

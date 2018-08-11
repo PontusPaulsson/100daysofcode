@@ -1,0 +1,5 @@
+//getItems returns the ObservableList object which can add items to
+//comboBox.getItems().addAll("Apples", "Bananas", "Oranges", "Watermelons");
+//comboBox.setOnAction(e -> System.out.println("User selected: " + comboBox.getValue()));
+//comboBox.setEditable(true); - Empty value
+//comboBox.setPromptText("Select your favorite movie."); - Sets default text i valuefield
