@@ -20,12 +20,7 @@ import java.util.Observable;
 public class Main extends Application {
 
     Stage window;
-    TableView tableView;
-    Button addBtn;
-    TextField nameField;
-    TextField priceField;
-    TextField quantityField;
-    Button delBtn;
+    BorderPane layout;
 
     public static void main(String[] args) {
         launch(args);
@@ -36,84 +31,24 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("TreeView");
 
-        //Textfield for Name
-        nameField = new TextField("Name");
+        //File menu
+        Menu fileMenu = new Menu("File");
 
-        //Textfield for Price
-        priceField = new TextField("Price");
+        //Menu items
+        fileMenu.getItems().add(new MenuItem("New Project...")); //... means that a new window (stage) will be opened.
+        fileMenu.getItems().add(new MenuItem("New Module..."));
+        fileMenu.getItems().add(new MenuItem("Import Project..."));
 
-        //Textfield for Quantity
-        quantityField = new TextField("Quantity");
+        //Main menubar
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(fileMenu);
 
-        //Delete btn
-        delBtn = new Button("Delete");
-        delBtn.setOnAction(e -> delProduct());
-
-        //Add btn
-        addBtn = new Button("Add");
-        addBtn.setOnAction(e -> {
-            Product p = new Product(nameField.getText(), Double.parseDouble(priceField.getText()), Integer.parseInt(quantityField.getText()));
-            addProduct(p);
-
-        });
-
-        //Name column
-        TableColumn<Product, String> name = new TableColumn<>("Name");
-        name.setMinWidth(200);
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        //Price column
-        TableColumn<Product, String> price = new TableColumn<>("Price");
-        price.setMinWidth(200);
-        price.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        //Quantity column
-        TableColumn<Product, String> quantity = new TableColumn<>("Quantity");
-        quantity.setMinWidth(200);
-        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-
-        tableView = new TableView();
-        tableView.setEditable(false);
-        tableView.setItems(getProduct());
-        tableView.getColumns().addAll(name, price, quantity); //add columns to tableview
-
-        //HBox for fields and buttons
-        HBox hBox = new HBox();
-        hBox.setPadding(new Insets(10,10,10,10));
-        hBox.getChildren().addAll(nameField,priceField, quantityField, addBtn, delBtn);
-        hBox.setAlignment(Pos.BOTTOM_CENTER);
-
-        //VBox for tableview
-        VBox layout = new VBox();
-        layout.getChildren().addAll(tableView, hBox); //add tableview to layout
-
-
+        layout = new BorderPane();
+        layout.setTop(menuBar); //Add menubar to the top of the layout - Use instead of getChildren().addAll.
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.show();
-    }
 
-    //Get all of the products
-    public ObservableList<Product> getProduct(){
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product("Dell", 500.00, 100));
-        products.add(new Product("Soundsystem", 99.00, 100));
-        products.add(new Product("Apple", 0.99, 100));
-        products.add(new Product("Toilet", 99, 100));
-        products.add(new Product("NCorn", 1.49, 100));
-
-        return products;
-    }
-    public void addProduct(Product product){
-        tableView.getItems().add(product);
-    }
-    public void delProduct(){
-        ObservableList<Product> productSelected, allProducts;
-        allProducts = tableView.getItems();
-        productSelected = tableView.getSelectionModel().getSelectedItems();
-
-        productSelected.forEach(allProducts::remove);
     }
 }
