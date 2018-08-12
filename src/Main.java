@@ -21,6 +21,11 @@ public class Main extends Application {
 
     Stage window;
     TableView tableView;
+    Button addBtn;
+    TextField nameField;
+    TextField priceField;
+    TextField quantityField;
+    ObservableList<Product> products = FXCollections.observableArrayList();
     public static void main(String[] args) {
         launch(args);
     }
@@ -29,6 +34,25 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("TreeView");
+
+        //Textfield for Name
+        nameField = new TextField("Name");
+
+        //Textfield for Price
+        priceField = new TextField("Price");
+
+        //Textfield for Quantity
+        quantityField = new TextField("Quantity");
+
+
+
+        //Add btn
+        addBtn = new Button("Add");
+        addBtn.setOnAction(e -> {
+            Product p = new Product(nameField.getText(), Double.parseDouble(priceField.getText()), Integer.parseInt(quantityField.getText()));
+            tableView.setItems(addProduct(p));
+
+        });
 
         //Name column
         TableColumn<Product, String> name = new TableColumn<>("Name");
@@ -51,9 +75,8 @@ public class Main extends Application {
         tableView.setItems(getProduct());
         tableView.getColumns().addAll(name, price, quantity); //add columns to tableview
 
-
         VBox layout = new VBox();
-        layout.getChildren().add(tableView); //add tableview to layout
+        layout.getChildren().addAll(tableView, nameField, priceField, quantityField, addBtn); //add tableview to layout
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
@@ -62,12 +85,16 @@ public class Main extends Application {
 
     //Get all of the products
     public ObservableList<Product> getProduct(){
-        ObservableList<Product> products = FXCollections.observableArrayList();
         products.add(new Product("Dell", 500.00, 100));
         products.add(new Product("Soundsystem", 99.00, 100));
         products.add(new Product("Apple", 0.99, 100));
         products.add(new Product("Toilet", 99, 100));
         products.add(new Product("NCorn", 1.49, 100));
+
+        return products;
+    }
+    public ObservableList<Product> addProduct(Product product){
+        products.add(new Product(product.getName(), product.getPrice(), product.getQuantity()));
 
         return products;
     }
