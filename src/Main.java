@@ -25,7 +25,8 @@ public class Main extends Application {
     TextField nameField;
     TextField priceField;
     TextField quantityField;
-    ObservableList<Product> products = FXCollections.observableArrayList();
+    Button delBtn;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -44,13 +45,15 @@ public class Main extends Application {
         //Textfield for Quantity
         quantityField = new TextField("Quantity");
 
-
+        //Delete btn
+        delBtn = new Button("Delete");
+        delBtn.setOnAction(e -> delProduct());
 
         //Add btn
         addBtn = new Button("Add");
         addBtn.setOnAction(e -> {
             Product p = new Product(nameField.getText(), Double.parseDouble(priceField.getText()), Integer.parseInt(quantityField.getText()));
-            tableView.setItems(addProduct(p));
+            addProduct(p);
 
         });
 
@@ -75,8 +78,17 @@ public class Main extends Application {
         tableView.setItems(getProduct());
         tableView.getColumns().addAll(name, price, quantity); //add columns to tableview
 
+        //HBox for fields and buttons
+        HBox hBox = new HBox();
+        hBox.setPadding(new Insets(10,10,10,10));
+        hBox.getChildren().addAll(nameField,priceField, quantityField, addBtn, delBtn);
+        hBox.setAlignment(Pos.BOTTOM_CENTER);
+
+        //VBox for tableview
         VBox layout = new VBox();
-        layout.getChildren().addAll(tableView, nameField, priceField, quantityField, addBtn); //add tableview to layout
+        layout.getChildren().addAll(tableView, hBox); //add tableview to layout
+
+
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
@@ -85,6 +97,7 @@ public class Main extends Application {
 
     //Get all of the products
     public ObservableList<Product> getProduct(){
+        ObservableList<Product> products = FXCollections.observableArrayList();
         products.add(new Product("Dell", 500.00, 100));
         products.add(new Product("Soundsystem", 99.00, 100));
         products.add(new Product("Apple", 0.99, 100));
@@ -93,9 +106,14 @@ public class Main extends Application {
 
         return products;
     }
-    public ObservableList<Product> addProduct(Product product){
-        products.add(new Product(product.getName(), product.getPrice(), product.getQuantity()));
+    public void addProduct(Product product){
+        tableView.getItems().add(product);
+    }
+    public void delProduct(){
+        ObservableList<Product> productSelected, allProducts;
+        allProducts = tableView.getItems();
+        productSelected = tableView.getSelectionModel().getSelectedItems();
 
-        return products;
+        productSelected.forEach(allProducts::remove);
     }
 }
