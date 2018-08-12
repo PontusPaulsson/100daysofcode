@@ -43,6 +43,12 @@ public class Main extends Application {
         //Create tree
         treeView = new TreeView<>(root);
         treeView.setShowRoot(false);
+        treeView.getSelectionModel().selectedItemProperty()
+                .addListener((v, oldValue, newValue) -> {
+                   if(newValue != null){
+                       System.out.println(newValue.getValue());
+                   }
+                });
 
         StackPane layout = new StackPane();
         layout.setPadding(new Insets(20,20,20,20));
