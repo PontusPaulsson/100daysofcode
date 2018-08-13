@@ -32,16 +32,30 @@ public class Main extends Application {
         window.setTitle("TreeView");
 
         //File menu
-        Menu fileMenu = new Menu("File");
+        Menu fileMenu = new Menu("_File"); //_ to underline in menu (for alt+f4 shortcut)
+
+        //Edit menu
+        Menu editMenu = new Menu("_Edit");
 
         //Menu items
-        fileMenu.getItems().add(new MenuItem("New Project...")); //... means that a new window (stage) will be opened.
-        fileMenu.getItems().add(new MenuItem("New Module..."));
-        fileMenu.getItems().add(new MenuItem("Import Project..."));
+        //New file menuitem
+        MenuItem newFile = new MenuItem("New...");
+        newFile.setOnAction(e-> System.out.println("File created."));
+        fileMenu.getItems().add(newFile); //... means that a new window (stage) will be opened.
+        newFile.setDisable(true); //Disable = greyed out
+
+        //
+        fileMenu.getItems().add(new MenuItem("Open..."));
+        fileMenu.getItems().add(new MenuItem("Save..."));
+        fileMenu.getItems().add(new SeparatorMenuItem()); //Seperator line - Also menuitem
+
+        fileMenu.getItems().add(new MenuItem("Settings..."));
+        fileMenu.getItems().add(new SeparatorMenuItem());
+        fileMenu.getItems().add(new MenuItem("Exit..."));
 
         //Main menubar
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(fileMenu);
+        menuBar.getMenus().addAll(fileMenu, editMenu);
 
         layout = new BorderPane();
         layout.setTop(menuBar); //Add menubar to the top of the layout - Use instead of getChildren().addAll.
