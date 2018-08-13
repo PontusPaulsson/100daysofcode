@@ -34,7 +34,7 @@ public class Main extends Application {
         //File menu
         Menu fileMenu = new Menu("_File"); //_ to underline in menu (for alt+f4 shortcut)
 
-        //Help menu
+        //Help menu - Checkmenuitem
         Menu helpMenu = new Menu("_Help"); //_ to underline in menu (for alt+f4 shortcut)
         CheckMenuItem showLines = new CheckMenuItem("Show Line Numbers");
         showLines.setOnAction(e -> {
@@ -43,8 +43,21 @@ public class Main extends Application {
             else
                 System.out.println("Not printing linenumbers.");
         });
-
         helpMenu.getItems().add(showLines);
+        //RadioMenuItems
+        Menu difficultyMenu = new Menu("Difficulty");
+        ToggleGroup toggleGroup = new ToggleGroup();
+        RadioMenuItem easy = new RadioMenuItem("Easy");
+        RadioMenuItem medium = new RadioMenuItem("Medium");
+        RadioMenuItem hard = new RadioMenuItem("Hard");
+
+        easy.setToggleGroup(toggleGroup);
+        medium.setToggleGroup(toggleGroup);
+        hard.setToggleGroup(toggleGroup);
+
+        difficultyMenu.getItems().addAll(easy, medium, hard);
+
+
         //Edit menu
         Menu editMenu = new Menu("_Edit");
 
@@ -66,7 +79,7 @@ public class Main extends Application {
 
         //Main menubar
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(fileMenu, editMenu, helpMenu);
+        menuBar.getMenus().addAll(fileMenu, editMenu, helpMenu, difficultyMenu);
 
         layout = new BorderPane();
         layout.setTop(menuBar); //Add menubar to the top of the layout - Use instead of getChildren().addAll.
