@@ -1,0 +1,49 @@
+package src;
+
+/*import com.sun.javafx.scene.control.behavior.TreeViewBehavior;
+import com.sun.xml.internal.bind.v2.runtime.property.PropertyFactory;*/
+import javafx.application.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+import javafx.event.*;
+import javafx.scene.control.*;
+
+import javax.print.DocFlavor;
+import java.util.Observable;
+
+public class Main extends Application {
+
+    Stage window;
+    StackPane layout;
+    Button button;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        window = primaryStage;
+        window.setTitle("This is just a title.");
+
+
+        Person person = new Person();
+        person.setFirstName("Pontus");
+        person.firstNameProperty().addListener((v, oldValue, newValue) -> System.out.println(oldValue)); // Attach a listener to the StringProperty which then prints the oldValue if firstName is changed.
+
+        button = new Button("Submit");
+        button.setOnAction(e -> person.setFirstName("Bucky"));
+        layout = new StackPane();
+        layout.getChildren().add(button);
+        Scene scene = new Scene(layout, 300, 250);
+        window.setScene(scene);
+        window.show();
+
+    }
+}
